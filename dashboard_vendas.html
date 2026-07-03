@@ -1,0 +1,583 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vendas do Mês · Grupo Tapeceiro</title>
+<style>
+:root{--bg:#0a0e14;--panel:#111823;--p2:#0d141d;--line:#1e2a3a;--txt:#e6edf3;--mut:#7d8da3;--em:#10b981;--cy:#22d3ee;--amb:#f59e0b;--red:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,Segoe UI,sans-serif;background:radial-gradient(1200px 600px at 80% -10%,rgba(16,185,129,.08),transparent),radial-gradient(900px 500px at 10% 10%,rgba(34,211,238,.06),transparent),var(--bg);color:var(--txt);padding:28px;min-height:100vh}
+.head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+h1{font-family:'Space Grotesk',sans-serif;font-size:23px;font-weight:600;letter-spacing:-.02em}
+h1 span{color:var(--em)}
+.sub{color:var(--mut);font-size:13px;margin-top:4px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:22px}
+.kpi{background:linear-gradient(180deg,var(--panel),var(--p2));border:1px solid var(--line);border-radius:14px;padding:18px 20px;position:relative;overflow:hidden}
+.kpi::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--em)}
+.kpi.c::before{background:var(--cy)} .kpi.r::before{background:var(--red)} .kpi.a::before{background:var(--amb)}
+.kpi .lbl{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.kpi .val{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;margin-top:8px;letter-spacing:-.02em}
+.kpi.r .val{color:var(--red)} .kpi.c .val{color:var(--cy)}
+.kpi .foot{color:var(--mut);font-size:12px;margin-top:6px;line-height:1.5}
+.panel{background:linear-gradient(180deg,var(--panel),var(--p2));border:1px solid var(--line);border-radius:16px;padding:22px}
+.ptop{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:10px}
+.ptitle{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600}
+.pcap{color:var(--mut);font-size:13px;margin-bottom:16px}
+.toggle{display:flex;background:var(--p2);border:1px solid var(--line);border-radius:10px;padding:3px}
+.toggle button{background:none;border:0;color:var(--mut);padding:8px 15px;font-size:12px;font-weight:600;border-radius:7px;cursor:pointer;font-family:inherit;transition:.15s}
+.toggle button.on{background:var(--em);color:#06281d}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--line);font-weight:600}
+th:nth-child(3),th:nth-child(4),th:nth-child(5),td.metric,td.q,td.pm{text-align:right} th:first-child,td.rk{text-align:center}
+td{padding:11px 10px;border-bottom:1px solid rgba(30,42,58,.5);vertical-align:middle}
+tr:hover td{background:rgba(16,185,129,.04)}
+.rk{color:var(--cy);font-weight:700;font-family:'Space Grotesk';width:34px;font-size:15px}
+.pname{font-weight:500;display:block;margin-bottom:7px}
+.flag{background:rgba(239,68,68,.15);color:var(--red);font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;margin-left:4px;text-transform:uppercase;letter-spacing:.04em}
+.bar{height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--em),var(--cy));border-radius:3px}
+.mono{font-family:'Space Grotesk',ui-monospace,monospace;white-space:nowrap}
+.metric{font-weight:700;font-size:15px} .q{color:var(--mut)} .pm{color:var(--amb)}
+.pd{min-width:260px}
+.note{color:var(--mut);font-size:12px;margin-top:16px;text-align:center}
+.note b{color:var(--amb)}
+.tred tr:hover td{background:rgba(239,68,68,.05)}
+.rkr{color:var(--red)!important} .mred{color:var(--red)}
+.lred{font-family:'Space Grotesk',monospace;color:var(--red);font-weight:700;text-align:right;white-space:nowrap}
+.tred th:nth-child(3),.tred th:nth-child(4),.tred th:nth-child(5){text-align:right}
+</style></head><body>
+<div class="head"><div>
+<h1>Vendas do mês · <span>Grupo Tapeceiro</span></h1>
+<div class="sub">28/05 a 27/06/2026 · 1187 produtos vendidos</div></div></div>
+
+<div class="kpis">
+<div class="kpi"><div class="lbl">Entrou no caixa</div><div class="val">R$ 1.577.180</div><div class="foot">todos os produtos, sem devoluções</div></div>
+<div class="kpi c"><div class="lbl">Top 10 produtos</div><div class="val">22%</div><div class="foot">10 itens = R$ 351.000 do total</div></div>
+<div class="kpi r"><div class="lbl">Vendidos no vermelho</div><div class="val">54</div><div class="foot">venderam abaixo do preço de custo</div></div>
+<div class="kpi a"><div class="lbl">Custo zerado no sistema</div><div class="val" style="color:var(--amb)">127</div><div class="foot">cadastro a corrigir</div></div>
+</div>
+
+<div class="panel">
+<div class="ptop"><div class="ptitle">Produtos que mais venderam</div>
+<div class="toggle"><button id="bf" class="on" onclick="sw('fat')">Por Venda (R$)</button><button id="bq" onclick="sw('qtd')">Por quantidade</button></div></div>
+<div class="pcap" id="cap">Ordenados pelo total que cada um trouxe de dinheiro no período. O preço médio é quanto saiu cada unidade em média (venda ÷ quantidade).</div>
+<table><thead><tr><th>#</th><th>Produto</th><th id="mh">Faturamento</th><th>Preço médio</th><th>Quantidade</th></tr></thead>
+<tbody id="tf"><tr>
+<td class="rk">1</td>
+<td class="pd"><span class="pname">FIBRA DE SILICONE KG </span><div class="bar"><i style="width:100.0%"></i></div></td>
+<td class="mono metric">R$ 118.157</td>
+<td class="mono pm">R$ 14,27</td>
+<td class="mono q">8.278 KG</td></tr>
+<tr>
+<td class="rk">2</td>
+<td class="pd"><span class="pname">COURVIN   URUGUAI 1.0 PRETO </span><div class="bar"><i style="width:40.7%"></i></div></td>
+<td class="mono metric">R$ 48.100</td>
+<td class="mono pm">R$ 23,96</td>
+<td class="mono q">2.007,3 MT</td></tr>
+<tr>
+<td class="rk">3</td>
+<td class="pd"><span class="pname">VELVET JOLIE STAR  CINZA URBANO </span><div class="bar"><i style="width:26.5%"></i></div></td>
+<td class="mono metric">R$ 31.330</td>
+<td class="mono pm">R$ 11,18</td>
+<td class="mono q">2.803,3 MT</td></tr>
+<tr>
+<td class="rk">4</td>
+<td class="pd"><span class="pname">ESPUMA 28 NRF 240 10 CM </span><div class="bar"><i style="width:22.6%"></i></div></td>
+<td class="mono metric">R$ 26.665</td>
+<td class="mono pm">R$ 181,14</td>
+<td class="mono q">147,2 MT</td></tr>
+<tr>
+<td class="rk">5</td>
+<td class="pd"><span class="pname">VELVET  JOLIE STAR COHIBA </span><div class="bar"><i style="width:22.3%"></i></div></td>
+<td class="mono metric">R$ 26.293</td>
+<td class="mono pm">R$ 11,10</td>
+<td class="mono q">2.369 MT</td></tr>
+<tr>
+<td class="rk">6</td>
+<td class="pd"><span class="pname">ESPUMA D28SD 5CM PROMOCAO </span><div class="bar"><i style="width:20.4%"></i></div></td>
+<td class="mono metric">R$ 24.117</td>
+<td class="mono pm">R$ 85,94</td>
+<td class="mono q">280,6 MT</td></tr>
+<tr>
+<td class="rk">7</td>
+<td class="pd"><span class="pname">PERCINTA ELASTICA  EFLEX </span><div class="bar"><i style="width:17.3%"></i></div></td>
+<td class="mono metric">R$ 20.446</td>
+<td class="mono pm">R$ 1,04</td>
+<td class="mono q">19.701 MT</td></tr>
+<tr>
+<td class="rk">8</td>
+<td class="pd"><span class="pname">ESPUMA D28SD 3CM PROMOCAO </span><div class="bar"><i style="width:16.7%"></i></div></td>
+<td class="mono metric">R$ 19.790</td>
+<td class="mono pm">R$ 52,18</td>
+<td class="mono q">379,2 MT</td></tr>
+<tr>
+<td class="rk">9</td>
+<td class="pd"><span class="pname">VELVET  JOLIE STAR FUNGI </span><div class="bar"><i style="width:15.6%"></i></div></td>
+<td class="mono metric">R$ 18.377</td>
+<td class="mono pm">R$ 11,07</td>
+<td class="mono q">1.660 MT</td></tr>
+<tr>
+<td class="rk">10</td>
+<td class="pd"><span class="pname">COURVIN URUGUAI 1.0 GRAFITE </span><div class="bar"><i style="width:15.0%"></i></div></td>
+<td class="mono metric">R$ 17.725</td>
+<td class="mono pm">R$ 23,55</td>
+<td class="mono q">752,7 MT</td></tr>
+<tr>
+<td class="rk">11</td>
+<td class="pd"><span class="pname">PLUMANTE 120G TRISOFT </span><div class="bar"><i style="width:14.4%"></i></div></td>
+<td class="mono metric">R$ 17.070</td>
+<td class="mono pm">R$ 8,07</td>
+<td class="mono q">2.114,8 MT</td></tr>
+<tr>
+<td class="rk">12</td>
+<td class="pd"><span class="pname">COURVIN P/ CAPOTA 1.90 </span><div class="bar"><i style="width:11.6%"></i></div></td>
+<td class="mono metric">R$ 13.754</td>
+<td class="mono pm">R$ 54,84</td>
+<td class="mono q">250,8 MT</td></tr>
+<tr>
+<td class="rk">13</td>
+<td class="pd"><span class="pname">CORANO PRETO 2792 </span><div class="bar"><i style="width:11.5%"></i></div></td>
+<td class="mono metric">R$ 13.616</td>
+<td class="mono pm">R$ 19,38</td>
+<td class="mono q">702,7 MT</td></tr>
+<tr>
+<td class="rk">14</td>
+<td class="pd"><span class="pname">ESPUMA 23  NRF 200 3 CM </span><div class="bar"><i style="width:11.4%"></i></div></td>
+<td class="mono metric">R$ 13.501</td>
+<td class="mono pm">R$ 43,77</td>
+<td class="mono q">308,5 MT</td></tr>
+<tr>
+<td class="rk">15</td>
+<td class="pd"><span class="pname">NEW VELVET YUMAO BASIC FERREO </span><div class="bar"><i style="width:11.1%"></i></div></td>
+<td class="mono metric">R$ 13.155</td>
+<td class="mono pm">R$ 7,61</td>
+<td class="mono q">1.728,2 MT</td></tr></tbody>
+<tbody id="tq" style="display:none"><tr>
+<td class="rk">1</td>
+<td class="pd"><span class="pname">PERCINTA ELASTICA  EFLEX </span><div class="bar"><i style="width:100.0%"></i></div></td>
+<td class="mono metric">19.701 MT</td>
+<td class="mono pm">R$ 1,04</td>
+<td class="mono q">19.701 MT</td></tr>
+<tr>
+<td class="rk">2</td>
+<td class="pd"><span class="pname">FIBRA DE SILICONE KG </span><div class="bar"><i style="width:42.0%"></i></div></td>
+<td class="mono metric">8.278 KG</td>
+<td class="mono pm">R$ 14,27</td>
+<td class="mono q">8.278 KG</td></tr>
+<tr>
+<td class="rk">3</td>
+<td class="pd"><span class="pname">TNT 40G  HIDROFOBICO PRETO 1,40 MT </span><div class="bar"><i style="width:25.6%"></i></div></td>
+<td class="mono metric">5.036,7 MT</td>
+<td class="mono pm">R$ 1,65</td>
+<td class="mono q">5.036,7 MT</td></tr>
+<tr>
+<td class="rk">4</td>
+<td class="pd"><span class="pname">PE PONTEIRA </span><div class="bar"><i style="width:24.9%"></i></div></td>
+<td class="mono metric">4.900 UN</td>
+<td class="mono pm">R$ 0,13</td>
+<td class="mono q">4.900 UN</td></tr>
+<tr>
+<td class="rk">5</td>
+<td class="pd"><span class="pname">PE CANTONEIRA PLASTICO TABACO </span><div class="bar"><i style="width:22.7%"></i></div></td>
+<td class="mono metric">4.468 UN</td>
+<td class="mono pm">R$ 1,72</td>
+<td class="mono q">4.468 UN</td></tr>
+<tr>
+<td class="rk">6</td>
+<td class="pd"><span class="pname">PE PONTEIRA GRANDE </span><div class="bar"><i style="width:20.7%"></i></div></td>
+<td class="mono metric">4.074 UN</td>
+<td class="mono pm">R$ 0,61</td>
+<td class="mono q">4.074 UN</td></tr>
+<tr>
+<td class="rk">7</td>
+<td class="pd"><span class="pname">PARAFUSO 5,0 X 30MM </span><div class="bar"><i style="width:17.8%"></i></div></td>
+<td class="mono metric">3.500 UN</td>
+<td class="mono pm">R$ 0,09</td>
+<td class="mono q">3.500 UN</td></tr>
+<tr>
+<td class="rk">8</td>
+<td class="pd"><span class="pname">PE CANTONEIRA PLASTICO PRETO C/ PARAFUSO </span><div class="bar"><i style="width:14.7%"></i></div></td>
+<td class="mono metric">2.896 UN</td>
+<td class="mono pm">R$ 2,19</td>
+<td class="mono q">2.896 UN</td></tr>
+<tr>
+<td class="rk">9</td>
+<td class="pd"><span class="pname">VELVET JOLIE STAR  CINZA URBANO </span><div class="bar"><i style="width:14.2%"></i></div></td>
+<td class="mono metric">2.803,3 MT</td>
+<td class="mono pm">R$ 11,18</td>
+<td class="mono q">2.803,3 MT</td></tr>
+<tr>
+<td class="rk">10</td>
+<td class="pd"><span class="pname">PARAFUSO 5,0 X 60MM </span><div class="bar"><i style="width:13.7%"></i></div></td>
+<td class="mono metric">2.700 UN</td>
+<td class="mono pm">R$ 0,20</td>
+<td class="mono q">2.700 UN</td></tr>
+<tr>
+<td class="rk">11</td>
+<td class="pd"><span class="pname">PARAFUSO 4,0 X 40MM </span><div class="bar"><i style="width:12.7%"></i></div></td>
+<td class="mono metric">2.500 UN</td>
+<td class="mono pm">R$ 0,09</td>
+<td class="mono q">2.500 UN</td></tr>
+<tr>
+<td class="rk">12</td>
+<td class="pd"><span class="pname">TNT 40G  HIDROFOBICO BRANCO  1,40 MT </span><div class="bar"><i style="width:12.6%"></i></div></td>
+<td class="mono metric">2.473,6 MT</td>
+<td class="mono pm">R$ 1,61</td>
+<td class="mono q">2.473,6 MT</td></tr>
+<tr>
+<td class="rk">13</td>
+<td class="pd"><span class="pname">ENCAIXE DE SOFÁ </span><div class="bar"><i style="width:12.3%"></i></div></td>
+<td class="mono metric">2.428 UN</td>
+<td class="mono pm">R$ 1,19</td>
+<td class="mono q">2.428 UN</td></tr>
+<tr>
+<td class="rk">14</td>
+<td class="pd"><span class="pname">VELVET  JOLIE STAR COHIBA </span><div class="bar"><i style="width:12.0%"></i></div></td>
+<td class="mono metric">2.369 MT</td>
+<td class="mono pm">R$ 11,10</td>
+<td class="mono q">2.369 MT</td></tr>
+<tr>
+<td class="rk">15</td>
+<td class="pd"><span class="pname">TNT 80G HIDROFOBICO  PRETO   1,40 MT </span><div class="bar"><i style="width:11.2%"></i></div></td>
+<td class="mono metric">2.210,4 MT</td>
+<td class="mono pm">R$ 3,21</td>
+<td class="mono q">2.210,4 MT</td></tr></tbody></table>
+</div>
+
+<div class="panel" style="margin-top:22px">
+<div class="ptop"><div class="ptitle" style="color:var(--red)">Produtos vendidos abaixo do preço de custo</div></div>
+<div class="pcap">54 produtos saíram por menos do que custaram — dão prejuízo e precisam de ajuste de preço ou correção de cadastro.</div>
+<table class="tred"><thead><tr><th>#</th><th>Produto</th><th>Vendido por (médio)</th><th>Preço de custo</th><th>Prejuízo</th></tr></thead>
+<tbody><tr>
+<td class="rk rkr">1</td>
+<td class="pd"><span class="pname">PE PONTEIRA MEDIO</span></td>
+<td class="mono metric mred">R$ 0,26</td>
+<td class="mono metric">R$ 128,00</td>
+<td class="mono lred">-99,8%</td></tr>
+<tr>
+<td class="rk rkr">2</td>
+<td class="pd"><span class="pname">ZIPER CHUMBO</span></td>
+<td class="mono metric mred">R$ 0,87</td>
+<td class="mono metric">R$ 318,83</td>
+<td class="mono lred">-99,7%</td></tr>
+<tr>
+<td class="rk rkr">3</td>
+<td class="pd"><span class="pname">ESPUMA 23 NRF 200 1 CM</span></td>
+<td class="mono metric mred">R$ 14,78</td>
+<td class="mono metric">R$ 609,26</td>
+<td class="mono lred">-97,6%</td></tr>
+<tr>
+<td class="rk rkr">4</td>
+<td class="pd"><span class="pname">ZIPER LILAS</span></td>
+<td class="mono metric mred">R$ 0,90</td>
+<td class="mono metric">R$ 18,40</td>
+<td class="mono lred">-95,1%</td></tr>
+<tr>
+<td class="rk rkr">5</td>
+<td class="pd"><span class="pname">PISO VINILICO MADEIRA  219303 .7MM</span></td>
+<td class="mono metric mred">R$ 62,71</td>
+<td class="mono metric">R$ 952,17</td>
+<td class="mono lred">-93,4%</td></tr>
+<tr>
+<td class="rk rkr">6</td>
+<td class="pd"><span class="pname">PISO VINILICO MADEIRA  216007 0.7MM</span></td>
+<td class="mono metric mred">R$ 80,00</td>
+<td class="mono metric">R$ 952,17</td>
+<td class="mono lred">-91,6%</td></tr>
+<tr>
+<td class="rk rkr">7</td>
+<td class="pd"><span class="pname">ZIPER AZUL BEBE</span></td>
+<td class="mono metric mred">R$ 1,00</td>
+<td class="mono metric">R$ 9,36</td>
+<td class="mono lred">-89,3%</td></tr>
+<tr>
+<td class="rk rkr">8</td>
+<td class="pd"><span class="pname">CAPACHO BEGE</span></td>
+<td class="mono metric mred">R$ 156,50</td>
+<td class="mono metric">R$ 1.080,00</td>
+<td class="mono lred">-85,5%</td></tr>
+<tr>
+<td class="rk rkr">9</td>
+<td class="pd"><span class="pname">ZIPER VERMELHO</span></td>
+<td class="mono metric mred">R$ 1,00</td>
+<td class="mono metric">R$ 6,84</td>
+<td class="mono lred">-85,4%</td></tr>
+<tr>
+<td class="rk rkr">10</td>
+<td class="pd"><span class="pname">GRAMPO MONTE FIX 80/08 CX 10000</span></td>
+<td class="mono metric mred">R$ 21,40</td>
+<td class="mono metric">R$ 132,00</td>
+<td class="mono lred">-83,8%</td></tr>
+<tr>
+<td class="rk rkr">11</td>
+<td class="pd"><span class="pname">COLA AMAZONAS AM 02 200G</span></td>
+<td class="mono metric mred">R$ 15,85</td>
+<td class="mono metric">R$ 96,00</td>
+<td class="mono lred">-83,5%</td></tr>
+<tr>
+<td class="rk rkr">12</td>
+<td class="pd"><span class="pname">COLA QUIMICOLA PINCEL  700  G</span></td>
+<td class="mono metric mred">R$ 30,69</td>
+<td class="mono metric">R$ 183,29</td>
+<td class="mono lred">-83,3%</td></tr>
+<tr>
+<td class="rk rkr">13</td>
+<td class="pd"><span class="pname">ESPUMA 28 NRF 240 5 CM</span></td>
+<td class="mono metric mred">R$ 91,72</td>
+<td class="mono metric">R$ 533,19</td>
+<td class="mono lred">-82,8%</td></tr>
+<tr>
+<td class="rk rkr">14</td>
+<td class="pd"><span class="pname">TACHA FUME CENTO 225</span></td>
+<td class="mono metric mred">R$ 12,00</td>
+<td class="mono metric">R$ 68,54</td>
+<td class="mono lred">-82,5%</td></tr>
+<tr>
+<td class="rk rkr">15</td>
+<td class="pd"><span class="pname">ESPUMA   SOFT (3144) 5  CM</span></td>
+<td class="mono metric mred">R$ 128,00</td>
+<td class="mono metric">R$ 669,06</td>
+<td class="mono lred">-80,9%</td></tr>
+<tr>
+<td class="rk rkr">16</td>
+<td class="pd"><span class="pname">MOLA ASPIRAL 10 CM</span></td>
+<td class="mono metric mred">R$ 2,74</td>
+<td class="mono metric">R$ 13,56</td>
+<td class="mono lred">-79,8%</td></tr>
+<tr>
+<td class="rk rkr">17</td>
+<td class="pd"><span class="pname">TACHA FUME CENTO 224</span></td>
+<td class="mono metric mred">R$ 14,50</td>
+<td class="mono metric">R$ 70,82</td>
+<td class="mono lred">-79,5%</td></tr>
+<tr>
+<td class="rk rkr">18</td>
+<td class="pd"><span class="pname">ESPUMA D28 SELADA 3 CM</span></td>
+<td class="mono metric mred">R$ 52,86</td>
+<td class="mono metric">R$ 255,48</td>
+<td class="mono lred">-79,3%</td></tr>
+<tr>
+<td class="rk rkr">19</td>
+<td class="pd"><span class="pname">COLA AMAZONAS AM 02 750G</span></td>
+<td class="mono metric mred">R$ 28,00</td>
+<td class="mono metric">R$ 132,00</td>
+<td class="mono lred">-78,8%</td></tr>
+<tr>
+<td class="rk rkr">20</td>
+<td class="pd"><span class="pname">ESPUMA D28 SELADA 10 CM</span></td>
+<td class="mono metric mred">R$ 235,86</td>
+<td class="mono metric">R$ 886,71</td>
+<td class="mono lred">-73,4%</td></tr>
+<tr>
+<td class="rk rkr">21</td>
+<td class="pd"><span class="pname">PE P/ CAMA  BOX PLASTICO PRETO 12 CM</span></td>
+<td class="mono metric mred">R$ 1,32</td>
+<td class="mono metric">R$ 4,80</td>
+<td class="mono lred">-72,5%</td></tr>
+<tr>
+<td class="rk rkr">22</td>
+<td class="pd"><span class="pname">NAPINHA BEGE</span></td>
+<td class="mono metric mred">R$ 15,00</td>
+<td class="mono metric">R$ 54,10</td>
+<td class="mono lred">-72,3%</td></tr>
+<tr>
+<td class="rk rkr">23</td>
+<td class="pd"><span class="pname">ESPUMA D28 10  CM GRAFITE (8168.4)</span></td>
+<td class="mono metric mred">R$ 189,00</td>
+<td class="mono metric">R$ 664,93</td>
+<td class="mono lred">-71,6%</td></tr>
+<tr>
+<td class="rk rkr">24</td>
+<td class="pd"><span class="pname">ESPUMA D28  SELADA 1 CM ESPECIAL  GAZIN</span></td>
+<td class="mono metric mred">R$ 17,93</td>
+<td class="mono metric">R$ 61,99</td>
+<td class="mono lred">-71,1%</td></tr>
+<tr>
+<td class="rk rkr">25</td>
+<td class="pd"><span class="pname">LINHA 040 COR 0538</span></td>
+<td class="mono metric mred">R$ 18,00</td>
+<td class="mono metric">R$ 54,10</td>
+<td class="mono lred">-66,7%</td></tr>
+<tr>
+<td class="rk rkr">26</td>
+<td class="pd"><span class="pname">ESPUMA D28  SELADA 10 CM ( SD GAZIN )</span></td>
+<td class="mono metric mred">R$ 200,00</td>
+<td class="mono metric">R$ 555,95</td>
+<td class="mono lred">-64,0%</td></tr>
+<tr>
+<td class="rk rkr">27</td>
+<td class="pd"><span class="pname">ESPUMA D28  SELADA 1 CM ( SD GAZIN )</span></td>
+<td class="mono metric mred">R$ 19,24</td>
+<td class="mono metric">R$ 52,45</td>
+<td class="mono lred">-63,3%</td></tr>
+<tr>
+<td class="rk rkr">28</td>
+<td class="pd"><span class="pname">D ESPUMAS D28 SOFT 10  CM</span></td>
+<td class="mono metric mred">R$ 201,62</td>
+<td class="mono metric">R$ 542,01</td>
+<td class="mono lred">-62,8%</td></tr>
+<tr>
+<td class="rk rkr">29</td>
+<td class="pd"><span class="pname">ESPUMA D28  SELADA 2 CM ESPECIAL  GAZIN</span></td>
+<td class="mono metric mred">R$ 35,93</td>
+<td class="mono metric">R$ 95,91</td>
+<td class="mono lred">-62,5%</td></tr>
+<tr>
+<td class="rk rkr">30</td>
+<td class="pd"><span class="pname">ESPUMA PRO 23  AVEOLADA</span></td>
+<td class="mono metric mred">R$ 60,00</td>
+<td class="mono metric">R$ 154,36</td>
+<td class="mono lred">-61,1%</td></tr>
+<tr>
+<td class="rk rkr">31</td>
+<td class="pd"><span class="pname">COLA QUIMICOLA PINCEL  2,8 KG</span></td>
+<td class="mono metric mred">R$ 90,25</td>
+<td class="mono metric">R$ 209,38</td>
+<td class="mono lred">-56,9%</td></tr>
+<tr>
+<td class="rk rkr">32</td>
+<td class="pd"><span class="pname">MICROFIBRA  BRANCA LISA 255 CM</span></td>
+<td class="mono metric mred">R$ 5,57</td>
+<td class="mono metric">R$ 12,86</td>
+<td class="mono lred">-56,7%</td></tr>
+<tr>
+<td class="rk rkr">33</td>
+<td class="pd"><span class="pname">VELUDO PAVIA 01 CRU</span></td>
+<td class="mono metric mred">R$ 7,74</td>
+<td class="mono metric">R$ 17,02</td>
+<td class="mono lred">-54,5%</td></tr>
+<tr>
+<td class="rk rkr">34</td>
+<td class="pd"><span class="pname">BARRA CHATA</span></td>
+<td class="mono metric mred">R$ 3,24</td>
+<td class="mono metric">R$ 5,84</td>
+<td class="mono lred">-44,5%</td></tr>
+<tr>
+<td class="rk rkr">35</td>
+<td class="pd"><span class="pname">VELUDO PAVIA 15 PRETO</span></td>
+<td class="mono metric mred">R$ 7,89</td>
+<td class="mono metric">R$ 14,14</td>
+<td class="mono lred">-44,2%</td></tr>
+<tr>
+<td class="rk rkr">36</td>
+<td class="pd"><span class="pname">VELVETEEN CACAU</span></td>
+<td class="mono metric mred">R$ 7,69</td>
+<td class="mono metric">R$ 13,51</td>
+<td class="mono lred">-43,1%</td></tr>
+<tr>
+<td class="rk rkr">37</td>
+<td class="pd"><span class="pname">NEW VELVET JOLIE PETROLEO CLASSIC</span></td>
+<td class="mono metric mred">R$ 10,93</td>
+<td class="mono metric">R$ 18,25</td>
+<td class="mono lred">-40,1%</td></tr>
+<tr>
+<td class="rk rkr">38</td>
+<td class="pd"><span class="pname">VELUDO INCA 02 JOLI BEGE CLARO</span></td>
+<td class="mono metric mred">R$ 7,89</td>
+<td class="mono metric">R$ 10,87</td>
+<td class="mono lred">-27,4%</td></tr>
+<tr>
+<td class="rk rkr">39</td>
+<td class="pd"><span class="pname">PE DE ALUMINIO CURVE 120X120X120MM OURO</span></td>
+<td class="mono metric mred">R$ 19,20</td>
+<td class="mono metric">R$ 25,77</td>
+<td class="mono lred">-25,5%</td></tr>
+<tr>
+<td class="rk rkr">40</td>
+<td class="pd"><span class="pname">VELUDO INCA 01 JOLI CRU</span></td>
+<td class="mono metric mred">R$ 7,50</td>
+<td class="mono metric">R$ 9,98</td>
+<td class="mono lred">-24,9%</td></tr>
+<tr>
+<td class="rk rkr">41</td>
+<td class="pd"><span class="pname">GRAMPO 106/06 ULTRA</span></td>
+<td class="mono metric mred">R$ 14,00</td>
+<td class="mono metric">R$ 18,40</td>
+<td class="mono lred">-23,9%</td></tr>
+<tr>
+<td class="rk rkr">42</td>
+<td class="pd"><span class="pname">DELUXE JOLI(CAD)  BAL</span></td>
+<td class="mono metric mred">R$ 8,03</td>
+<td class="mono metric">R$ 10,40</td>
+<td class="mono lred">-22,8%</td></tr>
+<tr>
+<td class="rk rkr">43</td>
+<td class="pd"><span class="pname">RODIZIO FIXO 3,8 CM</span></td>
+<td class="mono metric mred">R$ 1,75</td>
+<td class="mono metric">R$ 2,20</td>
+<td class="mono lred">-20,6%</td></tr>
+<tr>
+<td class="rk rkr">44</td>
+<td class="pd"><span class="pname">BAGUN AZUL MARINHO</span></td>
+<td class="mono metric mred">R$ 16,00</td>
+<td class="mono metric">R$ 19,77</td>
+<td class="mono lred">-19,1%</td></tr>
+<tr>
+<td class="rk rkr">45</td>
+<td class="pd"><span class="pname">ART DM Y 032</span></td>
+<td class="mono metric mred">R$ 32,00</td>
+<td class="mono metric">R$ 39,30</td>
+<td class="mono lred">-18,6%</td></tr>
+<tr>
+<td class="rk rkr">46</td>
+<td class="pd"><span class="pname">ACQUABLOCK COSTELA DE ADÃO AZUL</span></td>
+<td class="mono metric mred">R$ 20,00</td>
+<td class="mono metric">R$ 24,12</td>
+<td class="mono lred">-17,1%</td></tr>
+<tr>
+<td class="rk rkr">47</td>
+<td class="pd"><span class="pname">ESPUMA ACOPLADA 0.5MM BRANCA</span></td>
+<td class="mono metric mred">R$ 12,12</td>
+<td class="mono metric">R$ 14,50</td>
+<td class="mono lred">-16,4%</td></tr>
+<tr>
+<td class="rk rkr">48</td>
+<td class="pd"><span class="pname">TELA MESHE FREE PRA CADEIRA E SOM</span></td>
+<td class="mono metric mred">R$ 25,00</td>
+<td class="mono metric">R$ 29,38</td>
+<td class="mono lred">-14,9%</td></tr>
+<tr>
+<td class="rk rkr">49</td>
+<td class="pd"><span class="pname">ACQUABLOCK CESTARIA</span></td>
+<td class="mono metric mred">R$ 20,00</td>
+<td class="mono metric">R$ 23,12</td>
+<td class="mono lred">-13,5%</td></tr>
+<tr>
+<td class="rk rkr">50</td>
+<td class="pd"><span class="pname">CATRACA 25CM 90° COM 4 ESTAGIO</span></td>
+<td class="mono metric mred">R$ 10,90</td>
+<td class="mono metric">R$ 12,00</td>
+<td class="mono lred">-9,2%</td></tr>
+<tr>
+<td class="rk rkr">51</td>
+<td class="pd"><span class="pname">VELUDO MAIA 11 PRATA</span></td>
+<td class="mono metric mred">R$ 10,90</td>
+<td class="mono metric">R$ 11,81</td>
+<td class="mono lred">-7,7%</td></tr>
+<tr>
+<td class="rk rkr">52</td>
+<td class="pd"><span class="pname">GRAMA SINTETICA 20 MM  VERDE 2 MT</span></td>
+<td class="mono metric mred">R$ 52,57</td>
+<td class="mono metric">R$ 55,81</td>
+<td class="mono lred">-5,8%</td></tr>
+<tr>
+<td class="rk rkr">53</td>
+<td class="pd"><span class="pname">ART DM Y 036</span></td>
+<td class="mono metric mred">R$ 35,00</td>
+<td class="mono metric">R$ 36,72</td>
+<td class="mono lred">-4,7%</td></tr>
+<tr>
+<td class="rk rkr">54</td>
+<td class="pd"><span class="pname">LINHA 060 COR 1018</span></td>
+<td class="mono metric mred">R$ 18,00</td>
+<td class="mono metric">R$ 18,40</td>
+<td class="mono lred">-2,2%</td></tr></tbody></table>
+</div>
+
+<script>
+function sw(m){
+ document.getElementById('tf').style.display=m=='fat'?'':'none';
+ document.getElementById('tq').style.display=m=='qtd'?'':'none';
+ document.getElementById('bf').classList.toggle('on',m=='fat');
+ document.getElementById('bq').classList.toggle('on',m=='qtd');
+ document.getElementById('mh').textContent=m=='fat'?'Faturamento':'Quantidade';
+ document.getElementById('cap').textContent=m=='fat'?'Ordenados pelo total que cada um trouxe de dinheiro no período. O preço médio é quanto saiu cada unidade em média (venda ÷ quantidade).':'Ordenados pela quantidade vendida. O preço médio é quanto saiu cada unidade em média (venda ÷ quantidade).';
+}
+</script></body></html>
